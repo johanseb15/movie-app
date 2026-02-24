@@ -1,104 +1,125 @@
-## Movie App – Vite + React + Tailwind v4 + TMDb
+# Movie App
 
-Aplicación web moderna para explorar películas, inspirada en el diseño de Apple TV. Incluye búsqueda, trailers, y secciones de tendencias.
+Aplicacion web para descubrir peliculas usando la API de TMDb, construida con React + Vite + Tailwind CSS.
 
-### 🚀 Características
+Este proyecto esta pensado como pieza de portafolio junior: muestra consumo de APIs externas, arquitectura por componentes, rutas, estado, UI responsive y deploy continuo en GitHub Pages.
 
-- 🎬 **Top 10 de Películas** con números destacados
-- 🔍 **Búsqueda avanzada** de películas
-- 🎥 **Reproducción de trailers** desde YouTube
-- 📱 **Diseño responsive** estilo Apple TV
-- ⚡ **Rendimiento optimizado** con Vite
-- 🎨 **Tailwind CSS v4** con diseño moderno
+## Demo
 
-### 📋 Configuración Local
+- Produccion: https://johanseb15.github.io/movie-app/
+- Repositorio: https://github.com/johanseb15/movie-app
 
-1) Instala dependencias:
+## Features
+
+- Home estilo streaming con hero destacado.
+- Top 10 de peliculas con numeracion visual.
+- Filas por categoria: Tendencias, Populares y Mejor Valoradas.
+- Busqueda de peliculas por texto.
+- Vista de detalle por pelicula (`/movie/:id`).
+- Reproduccion de trailer en modal (YouTube).
+- Estados de carga y manejo de errores de API.
+- UI responsive para mobile, tablet y desktop.
+
+## Stack Tecnico
+
+- React 19
+- Vite 7
+- Tailwind CSS v4
+- React Router DOM v6
+- TMDb API v3
+- GitHub Actions + GitHub Pages
+
+## Arquitectura del Proyecto
+
+```txt
+movie-app/
+|- src/
+|  |- api/            # Cliente TMDb y helpers
+|  |- components/     # Componentes reutilizables de UI
+|  |- pages/          # Home y detalle de pelicula
+|  |- App.jsx         # Router principal
+|  |- main.jsx        # Entry point
+|- .github/workflows/
+|  |- deploy.yml      # CI/CD para Pages
+|- vite.config.js     # Base para despliegue en /movie-app/
+```
+
+## Lo que practique en este proyecto
+
+- Integracion de API REST real con manejo de errores (401/404).
+- Gestion de estado en React con hooks (`useState`, `useEffect`).
+- Navegacion con rutas y parametros dinamicos.
+- Diseno de interfaz tipo producto real (streaming UI).
+- Flujo de deploy automatico con GitHub Actions.
+
+## Setup Local
+
+### 1) Instalar dependencias
 
 ```bash
 npm i
 ```
 
-2) Crea `.env` en la raíz con tu API Key de TMDb (v3):
+### 2) Crear `.env`
 
+```env
+VITE_TMDB_API_KEY=TU_API_KEY_V3
 ```
-VITE_TMDB_API_KEY=TU_API_KEY_AQUI
-```
 
-**⚠️ IMPORTANTE:** 
-- Necesitas una **API Key simple**, NO un JWT token
-- Obtén tu API Key en: https://www.themoviedb.org/settings/api
-- Debes crear una cuenta en TMDb y solicitar una API Key
-- La API Key debe verse como: `c989f83ffce891f0f7dfba2b8f684f22` (32 caracteres alfanuméricos)
-- Si ves un error 401, verifica que estés usando la API Key correcta
+Importante:
 
-3) Desarrollo:
+- Usa la API Key v3 (32 caracteres).
+- No uses JWT Bearer token en `VITE_TMDB_API_KEY`.
+- Si aparece error 401, revisa la clave.
+
+### 3) Ejecutar en desarrollo
 
 ```bash
 npm run dev
 ```
 
-4) Producción local:
+### 4) Build local de produccion
 
 ```bash
-npm run build && npm run preview
+npm run build
+npm run preview
 ```
 
-### 🌐 Despliegue en GitHub Pages
+## Scripts
 
-#### Opción 1: Deploy Automático (Recomendado)
+- `npm run dev`: inicia entorno local.
+- `npm run build`: genera build de produccion.
+- `npm run preview`: previsualiza build.
+- `npm run lint`: ejecuta ESLint.
+- `npm run deploy`: deploy manual con `gh-pages`.
 
-1. **Crea el repositorio en GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/johanseb15/movie-app.git
-   git push -u origin main
-   ```
+## Deploy en GitHub Pages
 
-2. **Configura GitHub Pages:**
-   - Ve a `Settings` > `Pages` en tu repositorio
-   - En `Source`, selecciona `GitHub Actions`
+Este repo ya incluye CI/CD automatico con `.github/workflows/deploy.yml`.
 
-3. **Agrega el secreto de la API Key:**
-   - Ve a `Settings` > `Secrets and variables` > `Actions`
-   - Crea un nuevo secreto llamado `VITE_TMDB_API_KEY`
-   - Pega tu API Key de TMDb
+Requisitos:
 
-4. **El workflow se ejecutará automáticamente** al hacer push a `main`
+1. En GitHub, ir a `Settings > Pages` y seleccionar `GitHub Actions`.
+2. Crear secreto `VITE_TMDB_API_KEY` en:
+   `Settings > Secrets and variables > Actions`.
+3. Hacer push a `main`.
 
-#### Opción 2: Deploy Manual
+El workflow construye y publica automaticamente en:
+`https://johanseb15.github.io/movie-app/`
 
-```bash
-npm run deploy
-```
+## Roadmap
 
-**Nota:** Asegúrate de tener configurado `gh-pages` y estar autenticado con GitHub CLI.
+- Filtros por genero/anio/calificacion.
+- Favoritos y watchlist local.
+- Tests unitarios y de componentes.
+- Mejora de accesibilidad (teclado, focus, ARIA).
+- Skeletons y optimizacion de percepcion de carga.
 
-### 📁 Estructura del Proyecto
+## Autor
 
-```
-movie-app/
-├── src/
-│   ├── api/          # Servicios de TMDb API
-│   ├── components/   # Componentes reutilizables
-│   ├── pages/        # Páginas principales
-│   └── ...
-├── .github/
-│   └── workflows/    # GitHub Actions para deploy
-└── ...
-```
+- GitHub: https://github.com/johanseb15
+- Proyecto realizado como practica para portafolio de desarrollo frontend.
 
-### 🛠️ Tecnologías
+## Licencia
 
-- **React 19** - Framework UI
-- **Vite 7** - Build tool
-- **Tailwind CSS v4** - Estilos
-- **React Router** - Navegación
-- **TMDb API** - Datos de películas
-
-### 📝 Licencia
-
-Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+MIT
