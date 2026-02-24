@@ -1,3 +1,6 @@
+<img width="1365" height="591" alt="image" src="https://github.com/user-attachments/assets/72f2f897-ad76-4cd2-9062-49ba33150fba" />
+<img width="1344" height="592" alt="image" src="https://github.com/user-attachments/assets/3bdcaf1c-85a1-4116-8322-0fbb1ca1e91a" />
+<img width="1348" height="595" alt="image" src="https://github.com/user-attachments/assets/1b4f92f9-b884-4055-8121-95e38b26794e" />
 # Movie App
 
 Aplicacion web para descubrir peliculas usando la API de TMDb, construida con React + Vite + Tailwind CSS.
