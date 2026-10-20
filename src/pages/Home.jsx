@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import MovieRow from "../components/MovieRow";
@@ -19,12 +19,14 @@ export default function Home() {
   const [popular, setPopular] = useState([]);
   const [topRated, setTopRated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchLoading, setSearchLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [trailerKey, setTrailerKey] = useState(null);
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
   const [heroMovie, setHeroMovie] = useState(null);
+  const searchRequestId = useRef(0);
 
   useEffect(() => {
     let mounted = true;
@@ -57,20 +59,25 @@ export default function Home() {
   }, []);
 
   async function handleSearch(value) {
+    const requestId = ++searchRequestId.current;
     setQuery(value);
     if (!value) {
       setSearchResults([]);
+      setError("");
+      setSearchLoading(false);
       return;
     }
-    setLoading(true);
+    setSearchLoading(true);
     setError("");
     try {
       const data = await searchMovies(value);
-      setSearchResults(data);
+      if (requestId === searchRequestId.current) setSearchResults(data);
     } catch (e) {
-      setError(e.message || "Error en la búsqueda");
+      if (requestId === searchRequestId.current) {
+        setError(e.message || "Error en la búsqueda");
+      }
     } finally {
-      setLoading(false);
+      if (requestId === searchRequestId.current) setSearchLoading(false);
     }
   }
 
@@ -83,7 +90,7 @@ export default function Home() {
       } else {
         setError("No hay trailer disponible para esta película");
       }
-    } catch (e) {
+    } catch {
       setError("No se pudo cargar el trailer");
     }
   }
@@ -125,7 +132,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-6">
             Resultados para: <span className="text-zinc-400">"{query}"</span>
           </h2>
-          {loading ? (
+          {searchLoading ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {Array.from({ length: 12 }).map((_, i) => (
                 <div
