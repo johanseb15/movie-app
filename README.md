@@ -1,3 +1,22 @@
+> **Ficha de proyecto — Vyntrava | 2026-11-20**
+> Estado documental: revisión de repositorio; no implica despliegue ni auditoría de producción.
+
+## Resumen y propósito
+
+**Demo de frontend con integración TMDb.** Aplicación React/Vite de descubrimiento de películas con búsqueda, categorías, rutas de detalle y tráileres; consume datos de TMDb.
+
+## Estado y límites
+
+Demostración de aprendizaje y portfolio técnico; depende de la API de TMDb y de su configuración. La disponibilidad actual de la demo no se verificó.
+
+## Ubicación en el portfolio
+
+Ejemplo histórico de integración de API, navegación, UX responsive y GitHub Pages; no es producto principal.
+
+**Código:** [movie-app](https://github.com/johanseb15/movie-app) · **Documentación técnica original:** continúa a continuación y puede reflejar un estado histórico.
+
+---
+
 <img width="1365" height="591" alt="image" src="https://github.com/user-attachments/assets/72f2f897-ad76-4cd2-9062-49ba33150fba" />
 <img width="1344" height="592" alt="image" src="https://github.com/user-attachments/assets/3bdcaf1c-85a1-4116-8322-0fbb1ca1e91a" />
 <img width="1348" height="595" alt="image" src="https://github.com/user-attachments/assets/1b4f92f9-b884-4055-8121-95e38b26794e" />
